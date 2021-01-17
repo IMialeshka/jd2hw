@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="mialeshka">
+        <sql>
+            create database if not exists ListExpenses DEFAULT CHARACTER SET utf8;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="mialeshka">
+        <sql>
+            create table if not exists ListExpenses.recivers(
+            num int not null primary key,
+            name varchar(255)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="mialeshka">
+        <sql>
+            create table if not exists ListExpenses.expenses (
+            num int AUTO_INCREMENT primary key,
+            paydate date not null,
+            receiver int,
+            value dec,
+            constraint receiver foreign key (receiver)
+            references ListExpenses.recivers(num)
+            );
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

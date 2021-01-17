@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="mialeshka">
+        <sql>
+            create database if not exists ListExpenses DEFAULT CHARACTER SET utf8;
+        </sql>
+    </changeSet>
+    <changeSet id="2" author="mialeshka">
+        <sql>
+            create table if not exists ListExpenses.recivers(
+            num int not null primary key,
+            name varchar(255)
+            );
+        </sql>
+    </changeSet>
+    <changeSet id="3" author="mialeshka">
+        <sql>
+            create table if not exists ListExpenses.expenses (
+            num int AUTO_INCREMENT primary key,
+            paydate date not null,
+            receiver int,
+            value dec,
+            constraint receiver foreign key (receiver)
+            references ListExpenses.recivers(num)
+            );
+        </sql>
+    </changeSet>
+
+    <changeSet id="4" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`recivers`
+    (`num`,
+    `name`)
+    VALUES
+    (1,
+    'Client 1');
+    </sql>
+    </changeSet>
+
+    <changeSet id="5" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`recivers`
+    (`num`,
+    `name`)
+    VALUES
+    (2,
+    'Client 2');
+    </sql>
+    </changeSet>
+
+    <changeSet id="6" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`recivers`
+    (`num`,
+    `name`)
+    VALUES
+    (3,
+    'Client 3');
+    </sql>
+    </changeSet>
+
+    <changeSet id="7" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`recivers`
+    (`num`,
+    `name`)
+    VALUES
+    (4,
+    'Client 4');
+    </sql>
+    </changeSet>
+
+    <changeSet id="8" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`expenses`
+    (`num`,
+    `paydate`,
+    `receiver`,
+    `value`)
+    VALUES
+    (null,
+    '2011-05-10',
+    1,
+    20000);
+    </sql>
+    </changeSet>
+
+    <changeSet id="9" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`expenses`
+    (`num`,
+    `paydate`,
+    `receiver`,
+    `value`)
+    VALUES
+    (null,
+    '2011-05-10',
+    2,
+    94000);
+    </sql>
+    </changeSet>
+
+    <changeSet id="10" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`expenses`
+    (`num`,
+    `paydate`,
+    `receiver`,
+    `value`)
+    VALUES
+    (null,
+    '2011-05-11',
+    3,
+    10000);
+    </sql>
+    </changeSet>
+
+    <changeSet id="11" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`expenses`
+    (`num`,
+    `paydate`,
+    `receiver`,
+    `value`)
+    VALUES
+    (null,
+    '2011-05-11',
+    2,
+    13000);
+    </sql>
+    </changeSet>
+
+    <changeSet id="12" author="mialeshka">
+    <sql>
+    INSERT INTO `listexpenses`.`expenses`
+    (`num`,
+    `paydate`,
+    `receiver`,
+    `value`)
+    VALUES
+    (null,
+    '2011-05-12',
+    4,
+    2500);
+    </sql>
+    </changeSet>
+
+</databaseChangeLog>
