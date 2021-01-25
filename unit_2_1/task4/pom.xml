@@ -69,7 +69,7 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-        <plugin>
+        <!--<plugin>
           <groupId>org.liquibase</groupId>
           <artifactId>liquibase-maven-plugin</artifactId>
           <version>3.5.3</version>
@@ -82,12 +82,34 @@
               <configuration>
                 <changeLogFile>src/main/resources/changelog-listexpenses.xml</changeLogFile>
                 <driver>com.mysql.jdbc.Driver</driver>
-                <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</url>
+                <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC&amp;createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf8
+                </url>
                 <username>root</username>
                 <password>root</password>
               </configuration>
             </execution>
           </executions>
+        </plugin>
+        -->
+        <plugin>
+          <groupId>org.liquibase</groupId>
+          <artifactId>liquibase-maven-plugin</artifactId>
+          <version>3.5.3</version>
+          <executions>
+            <execution>
+              <phase>process-resources</phase>
+              <goals>
+                <goal>update</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <changeLogFile>src/main/resources/changelog-listexpenses.xml</changeLogFile>
+            <driver>com.mysql.cj.jdbc.Driver</driver>
+            <url>jdbc:mysql://localhost:3306/listexpenses?serverTimezone=UTC&amp;createDatabaseIfNotExist=true</url>
+            <username>root</username>
+            <password>root</password>
+          </configuration>
         </plugin>
       </plugins>
   </build>
